@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -20,12 +21,17 @@ import java.util.Locale;
 public class CreateEvent extends AppCompatActivity {
 
     private EditText eventNameEditText;
-    private TextView eventDateTextView;
+    private TextView eventStartDateTextView;
+    private TextView eventEndDateTextView;
     private TextView startTimeTextView;
     private TextView endTimeTextView;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    private DatePickerDialog.OnDateSetListener mStartDateSetListener;
+    private DatePickerDialog.OnDateSetListener mEndDateSetListener;
     private TimePickerDialog.OnTimeSetListener mStartTimeSetListener;
     private TimePickerDialog.OnTimeSetListener mEndTimeSetListener;
+    private FloatingActionButton savefloatingActionButton;
+    private Calendar startCalendar = Calendar.getInstance();
+    private Calendar endCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,32 +39,57 @@ public class CreateEvent extends AppCompatActivity {
         setContentView(R.layout.activity_create_event);
 
         eventNameEditText = (EditText) findViewById(R.id.eventNameEditText);
-        eventDateTextView = (TextView) findViewById(R.id.eventDateTextView);
+        eventStartDateTextView  = (TextView) findViewById(R.id.eventStartDateTextView);
+        eventEndDateTextView  = (TextView) findViewById(R.id.eventEndDateTextView);
         startTimeTextView = (TextView) findViewById(R.id.startTimeTextView);
         endTimeTextView = (TextView) findViewById(R.id.endTimeTextView);
+        savefloatingActionButton = (FloatingActionButton) findViewById(R.id.savefloatingActionButton);
 
-        eventDateTextView.setOnClickListener(new View.OnClickListener() {
+        eventStartDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int year = startCalendar.get(Calendar.YEAR);
+                int month = startCalendar.get(Calendar.MONTH);
+                int day = startCalendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         CreateEvent.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
+                        mStartDateSetListener,
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
 
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        mStartDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                eventDateTextView.setText(month + "/" + day + "/" + year);
+                eventStartDateTextView.setText(month + "/" + day + "/" + year);
+            }
+        };
+
+        eventEndDateTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int year = endCalendar.get(Calendar.YEAR);
+                int month = endCalendar.get(Calendar.MONTH);
+                int day = endCalendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        CreateEvent.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mEndDateSetListener,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mEndDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                eventEndDateTextView.setText(month + "/" + day + "/" + year);
             }
         };
 
@@ -66,7 +97,6 @@ public class CreateEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int min = calendar.get(Calendar.MINUTE);
 
@@ -83,15 +113,14 @@ public class CreateEvent extends AppCompatActivity {
         mStartTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                Calendar c = Calendar.getInstance();
-                c.set(Calendar.HOUR_OF_DAY, hour);
+                startCalendar.set(Calendar.HOUR_OF_DAY, hour);
                 //instead of c.set(Calendar.HOUR, hour);
-                c.set(Calendar.MINUTE, minute);
+                startCalendar.set(Calendar.MINUTE, minute);
 
                 String myFormat = hour < 10 || (hour > 12 && hour < 22) ? "h:mm a" : "hh:mm a";
 
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                String  formated_time = sdf.format(c.getTime());
+                String  formated_time = sdf.format(startCalendar.getTime());
 
                 startTimeTextView.setText(formated_time);
             }
@@ -101,7 +130,6 @@ public class CreateEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int min = calendar.get(Calendar.MINUTE);
 
@@ -118,18 +146,27 @@ public class CreateEvent extends AppCompatActivity {
         mEndTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                Calendar c = Calendar.getInstance();
-                c.set(Calendar.HOUR_OF_DAY, hour);
+                endCalendar.set(Calendar.HOUR_OF_DAY, hour);
                 //instead of c.set(Calendar.HOUR, hour);
-                c.set(Calendar.MINUTE, minute);
+                endCalendar.set(Calendar.MINUTE, minute);
 
                 String myFormat = hour < 10 || (hour > 12 && hour < 22) ? "h:mm a" : "hh:mm a";
 
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                String  formated_time = sdf.format(c.getTime());
+                String  formated_time = sdf.format(endCalendar.getTime());
 
                 endTimeTextView.setText(formated_time);
             }
         };
+
+        savefloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CalendarEvent calendarEvent = new CalendarEvent();
+                calendarEvent.setName(eventNameEditText.getText().toString().trim());
+                calendarEvent.setStartCalendar(startCalendar);
+                calendarEvent.setEndCalendar(endCalendar);
+            }
+        });
     }
 }
