@@ -1,13 +1,12 @@
 package com.austin.elliott.vailable;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -16,14 +15,16 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Collections;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,26 +46,36 @@ public class LoginActivity extends AppCompatActivity {
             MiscUtils.switchToActivity(LoginActivity.this, MainActivity.class);
         }
 
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email");
+        Button loginButton = (Button) findViewById(R.id.loginButtonNao);
+
+        //call Facebook onclick on your customized button on click by the following
+
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+
         callbackManager = CallbackManager.Factory.create();
 
-        // Callback registration
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook login successful " + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Log.d("Success", "Login");
+                        handleFacebookAccessToken(loginResult.getAccessToken());
+                    }
 
-            @Override
-            public void onCancel() {
-                System.out.println("facebook login cancelled");
-            }
+                    @Override
+                    public void onCancel() {
+                    }
 
+                    @Override
+                    public void onError(FacebookException exception) {
+                    }
+                });
+
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onError(FacebookException exception) {
-                System.out.println("facebook login error: " + exception.getMessage());
+            public void onClick(View view) {
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Collections.singletonList("public_profile"));
             }
         });
     }

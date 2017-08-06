@@ -6,6 +6,10 @@
     tools:context="com.austin.elliott.vailable.MainActivity"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/toolbclient"
+        layout="@layout/toolbar_main" />
+
     <Button
         android:id="@+id/createEventButton"
         android:layout_width="wrap_content"
