@@ -9,6 +9,7 @@ public class FirebaseUtils {
 
     public static final String USERS = "users";
     public static final String CALENDAR_EVENTS = "calendarEvents";
+    public static final String AVAILABILITY = "Availability";
     private static FirebaseDatabase mFirebaseDatabase;
 
     private FirebaseUtils() {
@@ -62,5 +63,13 @@ public class FirebaseUtils {
 
     public static DatabaseReference getCalendarEventsDBRef() {
         return getDatabaseRef().child(CALENDAR_EVENTS);
+    }
+
+    public static void saveAvailability(CalendarEvent calendarEvent) {
+        DatabaseReference newAvailability = getDatabaseRef().child(AVAILABILITY).push();
+        calendarEvent.setCreatedBy(getCurrentUserUID());
+        newAvailability.setValue(calendarEvent);
+        getCurrentUserDBReference().child(AVAILABILITY).child(newAvailability.getKey())
+                .setValue(calendarEvent.getEventName());
     }
 }

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.austin.elliott.vailable.CreateEvent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="I'm Available..."
+            android:padding="15dp" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/availStartDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Date"
+                android:padding="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/availEndDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Date"
+                android:padding="15dp" />
+        </LinearLayout>
+
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <TextView
+                android:id="@+id/availStartTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Time"
+                android:padding="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/availEndTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Time"
+                android:padding="15dp" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/availabilityListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="90dp"/>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/availSavefloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        android:layout_margin="15dp"
+        app:srcCompat="@drawable/ic_done_white_24dp"
+        android:layout_gravity="end|bottom"/>
+</android.support.design.widget.CoordinatorLayout>

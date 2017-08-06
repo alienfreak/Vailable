@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button createEventButton = (Button) findViewById(R.id.createEventButton);
+        Button setAvailableTimes = (Button) findViewById(R.id.setAvailableTimesButton);
         eventNameTextView = (TextView) findViewById(R.id.eventNameTextView);
         dateTextView = (TextView) findViewById(R.id.dateTextView);
 
@@ -38,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MiscUtils.switchToActivity(MainActivity.this, CreateEvent.class);
+            }
+        });
+
+        setAvailableTimes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MiscUtils.switchToActivity(MainActivity.this, CreateAvailability.class);
             }
         });
     }
