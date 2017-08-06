@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbclient"
+    android:theme="@style/AppTheme.AppBarOverlay"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    android:title="@string/app_name"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:elevation="4dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <ImageView
+            android:id="@+id/homeToolbarButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:src="@drawable/ic_home_white_24dp"/>
+        <ImageView
+            android:id="@+id/friendsToolbarButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:src="@drawable/ic_group_white_24dp"/>
+        <ImageView
+            android:id="@+id/eventsToolbarButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:src="@drawable/ic_event_white_24dp"/>
+        <ImageView
+            android:id="@+id/logoutToolbarButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:src="@drawable/ic_exit_to_app_white_24dp"/>
+    </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+

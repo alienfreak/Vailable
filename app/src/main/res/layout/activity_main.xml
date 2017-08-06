@@ -79,10 +79,9 @@
                 android:layout_weight=".5"/>
         </LinearLayout>
 
-
         <include
             android:id="@+id/toolbclient"
-            layout="@layout/toolbar_main"
+            layout="@layout/toolbar_main_act"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
