@@ -37,6 +37,11 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        if (mAuth.getCurrentUser() != null)
+        {
+            MiscUtils.switchToActivity(LoginActivity.this, MainActivity.class);
+        }
+
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
         callbackManager = CallbackManager.Factory.create();
@@ -72,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            switchToMainAct();
+                            MiscUtils.switchToActivity(LoginActivity.this, MainActivity.class);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -81,11 +86,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-    private void switchToMainAct() {
-        Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(myIntent);
     }
 
     @Override

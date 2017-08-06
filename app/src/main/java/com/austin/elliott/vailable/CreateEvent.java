@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.austin.elliott.vailable.utilities.FirebaseUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -163,9 +165,11 @@ public class CreateEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 CalendarEvent calendarEvent = new CalendarEvent();
-                calendarEvent.setName(eventNameEditText.getText().toString().trim());
-                calendarEvent.setStartCalendar(startCalendar);
-                calendarEvent.setEndCalendar(endCalendar);
+                calendarEvent.setEventName(eventNameEditText.getText().toString().trim());
+                calendarEvent.setStartCalendarMillis(startCalendar.getTimeInMillis());
+                calendarEvent.setEndCalendarMillis(endCalendar.getTimeInMillis());
+                FirebaseUtils.saveCalendarEvent(calendarEvent);
+                MiscUtils.switchToActivity(CreateEvent.this, MainActivity.class);
             }
         });
     }

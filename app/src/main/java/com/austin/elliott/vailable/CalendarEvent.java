@@ -1,33 +1,40 @@
 package com.austin.elliott.vailable;
 
-import java.util.Calendar;
-
 public final class CalendarEvent {
-    private String name;
-    private Calendar startCalendar;
-    private Calendar endCalendar;
+    private String eventName;
+    private long startCalendarMillis;
+    private long endCalendarMillis;
+    private String createdBy;
 
-    public String getName() {
-        return name;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
-    public Calendar getStartCalendar() {
-        return startCalendar;
+    public long getStartCalendarMillis() {
+        return startCalendarMillis;
     }
 
-    public void setStartCalendar(Calendar startCalendar) {
-        this.startCalendar = startCalendar;
+    public void setStartCalendarMillis(long startCalendarMillis) {
+        this.startCalendarMillis = startCalendarMillis;
     }
 
-    public Calendar getEndCalendar() {
-        return endCalendar;
+    public long getEndCalendarMillis() {
+        return endCalendarMillis;
     }
 
-    public void setEndCalendar(Calendar endCalendar) {
-        this.endCalendar = endCalendar;
+    public void setEndCalendarMillis(long endCalendarMillis) {
+        this.endCalendarMillis = endCalendarMillis;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }
