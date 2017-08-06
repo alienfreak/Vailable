@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "770431856207-mp77os63n5d5puu1i9pp0du4pi33i6ah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.austin.elliott.vailable",
+            "certificate_hash": "534194979e1f4045482252b164160d781f9fedad"
+          }
+        },
+        {
           "client_id": "770431856207-n13l3eduavgnr3d3d22p7vs0b6et5lbh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
