@@ -5,19 +5,61 @@
     android:layout_height="match_parent"
     tools:context="com.austin.elliott.vailable.LoginActivity">
 
-    <TextView
-        android:id="@+id/loginText"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/welcome_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="36sp"
-        android:textColor="#000000"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimary"
+        android:padding="20dp">
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/welcome_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome To Vailable!"
+            android:textSize="60sp"
+            android:layout_marginBottom="40dp"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-light"/>
+
+        <TextView
+            android:layout_below="@id/welcome_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start planning awesome events with friends now!"
+            android:layout_marginBottom="30dp"
+            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-light"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/welcome_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:id="@+id/loginText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="36sp"
+            android:textColor="#000000"
+            android:layout_above="@+id/login_button"
+            android:layout_centerHorizontal="true" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
 </RelativeLayout>
