@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/welcome_label"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="sans-serif-light"
             android:text="Start planning awesome events with friends now!"
             android:textColor="@android:color/white"
@@ -58,16 +58,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.705"
-        card_view:cardBackgroundColor="#fff">
+        card_view:cardBackgroundColor="#fff"
+        app:layout_anchor="@id/welcome_layout"
+        app:layout_anchorGravity="bottom|center">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="Sign in with Facebook"
@@ -94,4 +95,4 @@
 
     </android.support.v7.widget.CardView>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

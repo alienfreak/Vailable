@@ -3,11 +3,12 @@ package com.austin.elliott.vailable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.austin.elliott.vailable.utilities.FirebaseUtils;
+import com.facebook.Profile;
+import com.facebook.login.widget.ProfilePictureView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -32,26 +33,34 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbclient);
         setSupportActionBar(toolbar);
 
-        Button createEventButton = (Button) findViewById(R.id.createEventButton);
-        Button setAvailableTimes = (Button) findViewById(R.id.setAvailableTimesButton);
-        eventNameTextView = (TextView) findViewById(R.id.eventNameTextView);
-        dateTextView = (TextView) findViewById(R.id.dateTextView);
+        TextView welcomNameTextView = (TextView) findViewById(R.id.welcomeTextView);
+        welcomNameTextView.setText("Welcome\n " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName() + "!");
 
-        getUserCalendarEventKeys();
+        //setup facebook profile pic
+        ProfilePictureView profilePictureView;
+        profilePictureView = (ProfilePictureView) findViewById(R.id.friendProfilePicture);
+        profilePictureView.setProfileId(Profile.getCurrentProfile().getId());
 
-        createEventButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MiscUtils.switchToActivity(MainActivity.this, CreateEvent.class);
-            }
-        });
+//        Button createEventButton = (Button) findViewById(R.id.createEventButton);
+//        Button setAvailableTimes = (Button) findViewById(R.id.setAvailableTimesButton);
+//        eventNameTextView = (TextView) findViewById(R.id.eventNameTextView);
+//        dateTextView = (TextView) findViewById(R.id.dateTextView);
 
-        setAvailableTimes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MiscUtils.switchToActivity(MainActivity.this, CreateAvailability.class);
-            }
-        });
+//        getUserCalendarEventKeys();
+
+//        createEventButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                MiscUtils.switchToActivity(MainActivity.this, CreateEvent.class);
+//            }
+//        });
+//
+//        setAvailableTimes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                MiscUtils.switchToActivity(MainActivity.this, CreateAvailability.class);
+//            }
+//        });
     }
 
     private void getUserCalendarEventKeys() {
