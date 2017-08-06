@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = super.onCreateView(inflater, container, savedInstanceState);
+        final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 //        Button createEventButton = (Button) findViewById(R.id.createEventButton);
 //        Button setAvailableTimes = (Button) findViewById(R.id.setAvailableTimesButton);

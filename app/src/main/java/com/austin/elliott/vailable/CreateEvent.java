@@ -41,7 +41,7 @@ public class CreateEvent extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        final View view = super.onCreateView(inflater, container, savedInstanceState);
+        final View view = inflater.inflate(R.layout.fragment_create_event, container, false);
 
         eventNameEditText = (EditText) view.findViewById(R.id.eventNameEditText);
         eventStartDateTextView  = (TextView) view.findViewById(R.id.eventStartDateTextView);
