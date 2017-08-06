@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Vailable</string>
+    <string name="facebook_app_id">1388426494607230</string>
+    <string name="fb_login_protocol_scheme">fb1388426494607230</string>
 </resources>
