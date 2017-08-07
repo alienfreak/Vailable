@@ -4,12 +4,21 @@ import com.austin.elliott.vailable.CalendarEvent;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.austin.elliott.vailable.dto.VailableUser;
+
+import java.util.HashMap;
 
 public class FirebaseUtils {
 
     public static final String USERS = "users";
     public static final String CALENDAR_EVENTS = "calendarEvents";
     public static final String AVAILABILITY = "Availability";
+    public static final String INFO = "info";
+    public static final String NAME = "name";
+    public static final String AGE = "age";
+    public static final String EMAIL = "email";
+    public static final String PICTURE_KEY = "picture_key";
+
     private static FirebaseDatabase mFirebaseDatabase;
 
     private FirebaseUtils() {
@@ -71,5 +80,25 @@ public class FirebaseUtils {
         newAvailability.setValue(calendarEvent);
         getCurrentUserDBReference().child(AVAILABILITY).child(newAvailability.getKey())
                 .setValue(calendarEvent.getEventName());
+    }
+
+    public static void saveUserInfo(VailableUser user) {
+        DatabaseReference userInfo = getCurrentUserDBReference().child(INFO);
+
+        if (user.getName() != null) {
+            userInfo.child(NAME).setValue(user.getName());
+        }
+
+        if (user.getAge() != -1) {
+            userInfo.child(AGE).setValue(user.getAge());
+        }
+
+        if (user.getEmail() != null) {
+            userInfo.child(EMAIL).setValue(user.getEmail());
+        }
+
+        if (user.getPicture_key() != null) {
+            userInfo.child(PICTURE_KEY).setValue(user.getPicture_key());
+        }
     }
 }
