@@ -6,9 +6,9 @@ package com.austin.elliott.vailable.dto;
 
 public class VailableUser {
     private String name;
-    private int age = -1;
-    private String picture_key;
-    private String email;
+    private int age = -1; //currently this information is unavailable
+    private String pictureUri;
+    private String email; //currently this information is unavailable
 
     public String getName() {
         return name;
@@ -26,12 +26,12 @@ public class VailableUser {
         this.age = age;
     }
 
-    public String getPicture_key() {
-        return picture_key;
+    public String getPictureUri() {
+        return pictureUri;
     }
 
-    public void setPicture_key(String picture_key) {
-        this.picture_key = picture_key;
+    public void setPictureUri(String picture_key) {
+        this.pictureUri = picture_key;
     }
 
     public String getEmail() {

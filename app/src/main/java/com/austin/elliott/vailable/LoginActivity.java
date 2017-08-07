@@ -26,11 +26,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.net.URI;
 import java.util.Collections;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
+    private static final int PICTURE_WIDTH = 64;
+    private static final int PICTURE_HEIGHT = 64;
     private CallbackManager callbackManager;
     private FirebaseAuth mAuth;
 
@@ -94,6 +97,8 @@ public class LoginActivity extends AppCompatActivity {
                             VailableUser user = new VailableUser();
                             Profile profile = Profile.getCurrentProfile();
                             user.setName(profile.getName());
+                            user.setPictureUri(profile.getProfilePictureUri(PICTURE_WIDTH, PICTURE_HEIGHT).toString());
+                            Log.d(TAG, "User Profile Picture URI " + user.getPictureUri());
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             MiscUtils.switchToActivity(LoginActivity.this, MainActivity.class);

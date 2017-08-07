@@ -97,8 +97,8 @@ public class FirebaseUtils {
             userInfo.child(EMAIL).setValue(user.getEmail());
         }
 
-        if (user.getPicture_key() != null) {
-            userInfo.child(PICTURE_KEY).setValue(user.getPicture_key());
+        if (user.getPictureUri() != null) {
+            userInfo.child(PICTURE_KEY).setValue(user.getPictureUri());
         }
     }
 }
