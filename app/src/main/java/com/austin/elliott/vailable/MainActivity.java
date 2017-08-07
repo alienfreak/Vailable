@@ -27,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ImageView friendsToolbarIcon = (ImageView) toolbar.findViewById(R.id.friendsToolbarButton);
+        friendsToolbarIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewFrag(new FriendsFragment());
+            }
+        });
+
         setSupportActionBar(toolbar);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
