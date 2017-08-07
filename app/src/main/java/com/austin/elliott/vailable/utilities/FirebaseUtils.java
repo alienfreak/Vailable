@@ -1,12 +1,10 @@
 package com.austin.elliott.vailable.utilities;
 
 import com.austin.elliott.vailable.CalendarEvent;
+import com.austin.elliott.vailable.dto.VailableUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.austin.elliott.vailable.dto.VailableUser;
-
-import java.util.HashMap;
 
 public class FirebaseUtils {
 
@@ -19,6 +17,7 @@ public class FirebaseUtils {
     public static final String EMAIL = "email";
     public static final String PICTURE_KEY = "picture_key";
 
+    public static final String CURRENTLY_AVAILABLE = "currentlyAvailable";
     private static FirebaseDatabase mFirebaseDatabase;
 
     private FirebaseUtils() {
@@ -100,5 +99,9 @@ public class FirebaseUtils {
         if (user.getPictureUri() != null) {
             userInfo.child(PICTURE_KEY).setValue(user.getPictureUri());
         }
+    }
+
+    public static void setUserCurrentlyAvailable(boolean available) {
+        getCurrentUserDBReference().child(INFO).child(CURRENTLY_AVAILABLE).setValue(available);
     }
 }

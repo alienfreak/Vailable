@@ -34,11 +34,11 @@
             android:layout_weight=".25"
             android:src="@drawable/ic_event_white_24dp"/>
         <ImageView
-            android:id="@+id/logoutToolbarButton"
+            android:id="@+id/settingsToolbarButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".25"
-            android:src="@drawable/ic_exit_to_app_white_24dp"/>
+            android:src="@drawable/ic_settings_white_24dp"/>
     </LinearLayout>
     </android.support.v7.widget.Toolbar>
 

@@ -15,4 +15,10 @@ final class MiscUtils {
         Intent myIntent = new Intent(context, activityToLoad);
         context.startActivity(myIntent);
     }
+
+    public static void switchToActivityClearBackStack(Context context, Class<? extends Activity> activityToLoad){
+        Intent myIntent = new Intent(context, activityToLoad);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(myIntent);
+    }
 }

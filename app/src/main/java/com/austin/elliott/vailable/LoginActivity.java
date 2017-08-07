@@ -27,7 +27,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.net.URI;
 import java.util.Collections;
 
 public class LoginActivity extends AppCompatActivity {
@@ -49,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() != null)
         {
-            MiscUtils.switchToActivity(LoginActivity.this, MainActivity.class);
+            MiscUtils.switchToActivityClearBackStack(LoginActivity.this, MainActivity.class);
         }
 
         Button loginButton = (Button) findViewById(R.id.loginButtonNao);
@@ -103,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "User Profile Picture URI " + user.getPictureUri());
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            MiscUtils.switchToActivity(LoginActivity.this, MainActivity.class);
+                            MiscUtils.switchToActivityClearBackStack(LoginActivity.this, MainActivity.class);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());

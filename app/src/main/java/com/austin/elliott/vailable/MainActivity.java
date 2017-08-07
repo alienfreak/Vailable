@@ -43,11 +43,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ImageView settingsToolbarIcon = (ImageView) toolbar.findViewById(R.id.settingsToolbarButton);
+        settingsToolbarIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToNewFrag(new SettingsFragment());
+            }
+        });
+
         setSupportActionBar(toolbar);
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_container, new HomeFragment());
-        transaction.commit();
+        goToNewFrag(new HomeFragment());
     }
 
     private void goToNewFrag(Fragment fragment) {
