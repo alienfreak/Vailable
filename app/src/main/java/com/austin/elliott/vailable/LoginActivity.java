@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.austin.elliott.vailable.dto.VailableUser;
+import com.austin.elliott.vailable.utilities.FirebaseUtils;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -98,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                             Profile profile = Profile.getCurrentProfile();
                             user.setName(profile.getName());
                             user.setPictureUri(profile.getProfilePictureUri(PICTURE_WIDTH, PICTURE_HEIGHT).toString());
+                            FirebaseUtils.saveUserInfo(user);
                             Log.d(TAG, "User Profile Picture URI " + user.getPictureUri());
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
