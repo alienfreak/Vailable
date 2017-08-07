@@ -100,7 +100,7 @@
                     android:id="@+id/availableFriendsTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Friends Available Now!"
+                    android:text="Friends Available Now"
                     android:textColor="@color/colorAvailable"
                     android:textSize="22sp" />
 
