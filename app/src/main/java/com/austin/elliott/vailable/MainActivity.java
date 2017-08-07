@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ImageView homeToolbarIcon = (ImageView) toolbar.findViewById(R.id.homeToolbarButton);
+        homeToolbarIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToNewFrag(new HomeFragment());
+            }
+        });
+
         setSupportActionBar(toolbar);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
