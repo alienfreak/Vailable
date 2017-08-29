@@ -13,29 +13,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.Profile;
+
 /**
  * Created by Tiger on 8/6/17.
  */
 
 public class FriendsFragment extends Fragment {
 
-    private TextView friendsSearchField;
+private TextView friendsSearchField;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return super.onCreateView(inflater, container, savedInstanceState);
-        return inflater.inflate(R.layout.fragment_friends, container, false);
-    }
+        final View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        Button searchFriendsButton = (Button) findViewById(R.id.searchFriendsButton);
-//        friendsSearchField = (TextView) findViewById(R.id.friendsSearchField);
-//
-//    }
+        getUsersFacebookFriendList();
+
+        return view;
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
@@ -46,4 +46,20 @@ public class FriendsFragment extends Fragment {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
     }
+
+public void getUsersFacebookFriendList() {
+    /* make the API call */
+    new GraphRequest(
+            AccessToken.getCurrentAccessToken(),
+            "/" + Profile.getCurrentProfile().getId() + "/friends",
+            null,
+            HttpMethod.GET,
+            new GraphRequest.Callback() {
+                public void onCompleted(GraphResponse response) {
+                    System.out.println(response);
+                    System.out.println("");
+                }
+            }
+    ).executeAsync();
+}
 }

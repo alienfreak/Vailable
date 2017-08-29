@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class LoginActivity extends AppCompatActivity {
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         Button loginButton = (Button) findViewById(R.id.loginButtonNao);
+        CardView fbLoginCardView = (CardView) findViewById(R.id.facebook_login_card_view);
 
         //call Facebook onclick on your customized button on click by the following
 
@@ -76,16 +79,27 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Collections.singletonList("public_profile"));
+                startFacebookLogin();
+            }
+        });
+        fbLoginCardView.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                startFacebookLogin();
             }
         });
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
+private void startFacebookLogin() {
+    ArrayList<String> permissions = new ArrayList<>();
+    permissions.add("public_profile");
+    permissions.add("user_friends");
+    LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, permissions);
+}
+
+private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
@@ -96,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             VailableUser user = new VailableUser();
                             Profile profile = Profile.getCurrentProfile();
+                            user.setFacebookID(profile.getId());
                             user.setName(profile.getName());
                             user.setPictureUri(profile.getProfilePictureUri(PICTURE_WIDTH, PICTURE_HEIGHT).toString());
                             FirebaseUtils.saveUserInfo(user);

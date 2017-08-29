@@ -25,10 +25,10 @@ import java.util.HashMap;
 
 public class HomeFragment extends Fragment {
 
-    HashMap<String, String> calenderEvents = new HashMap<>();
+    private HashMap<String, String> calenderEvents = new HashMap<>();
     private ArrayList<CalendarEvent> calenderEventObjects = new ArrayList<>();
-    LinearLayout eventsLinearLayout;
-    private boolean available;
+    private LinearLayout eventsLinearLayout;
+    private boolean available = true;
     private View homeView;
     private CardView userAvailableCardView;
 
@@ -37,8 +37,8 @@ public class HomeFragment extends Fragment {
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
 
         eventsLinearLayout = (LinearLayout) homeView.findViewById(R.id.upcomingEventsLinearLayout);
-        TextView welcomNameTextView = (TextView) homeView.findViewById(R.id.welcomeTextView);
-        welcomNameTextView.setText("Welcome\n " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName() + "!");
+        TextView welcomeNameTextView = (TextView) homeView.findViewById(R.id.welcomeTextView);
+        welcomeNameTextView.setText("Welcome,\n " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName() + "!");
 
         userAvailableCardView = (CardView) homeView.findViewById(R.id.userAvailableCardView);
         userAvailableCardView.setOnClickListener(userAvailableListener);

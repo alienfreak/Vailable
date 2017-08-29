@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:hint="Event Name"
             android:padding="15dp"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:textColorHint="#505050"/>
 
         <LinearLayout
             android:layout_height="wrap_content"

@@ -9,6 +9,7 @@ public class VailableUser {
     private int age = -1; //currently this information is unavailable
     private String pictureUri;
     private String email; //currently this information is unavailable
+    private String facebookID;
 
     public String getName() {
         return name;
@@ -41,4 +42,12 @@ public class VailableUser {
     public void setEmail(String email) {
         this.email = email;
     }
+
+public String getFacebookID() {
+    return facebookID;
+}
+
+public void setFacebookID(String facebookID) {
+    this.facebookID = facebookID;
+}
 }
